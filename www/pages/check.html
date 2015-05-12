@@ -1,0 +1,26 @@
+<ion-view view-title="Bishkek Taxi" hide-tabs ng-controller="Check">
+    <ion-content class="padding">
+        <div class="item">
+            <label class="item item-input">
+
+                <input type='tel' id='phone' required placeholder="Телефон" ng-model="tempPhone" />
+
+            </label>
+
+            <button class="button button-block button-positive" ng-show="!codeStatus" ng-click="sendSMS(tempPhone)">Отправить СМС</button>
+            <div class="card" ng-show="codeStatus">
+                <div class="item item-text-wrap">
+                    {{codeStatus}}
+                </div>
+            </div>
+            <label class="item item-input">
+                
+                <input type="number" ng-model="userCode" placeholder="Введите, пожалуйста, код подтверждения из СМС" />
+            </label>
+            <button class="button button-block button-positive" ng-click="chekCode(userCode)">Проверить Код</button>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>
