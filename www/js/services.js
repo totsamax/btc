@@ -1,17 +1,17 @@
 taxi.service('offerService', function ($resource) {
     this.orderId = undefined;
     this.currentOffer = undefined;
-    this.Logg = function(){
+    this.Logg = function () {
         console.log("Работает");
     };
     this.MakeOrder = function (from, to, phone) {
-        var makeOrderAPI = $resource("http://bishkektaxi-api-prod.azurewebsites.net/SetTaxiOrderState"
-//        ,{
-//            get: {
-//                method: "JSON"
-//            }
-//        }
-                );
+        var makeOrderAPI = $resource("http://api.bishkektaxi.org/SetTaxiOrderState"
+            //        ,{
+            //            get: {
+            //                method: "JSON"
+            //            }
+            //        }
+        );
 
         return makeOrderResult = makeOrderAPI.get({
             method: "create",
@@ -23,14 +23,14 @@ taxi.service('offerService', function ($resource) {
         });
     };
     this.GetDriverOfferList = function (orderId) {
-        var getListAPI = $resource("http://bishkektaxi-api-prod.azurewebsites.net/GetDriverOfferList");
+        var getListAPI = $resource("http://api.bishkektaxi.org/GetDriverOfferList");
         return getListResult = getListAPI.get({
             order_id: orderId
         });
 
     };
     this.CancelByUser = function (orderId) {
-        var cancelAPI = $resource("http://bishkektaxi-api-prod.azurewebsites.net/SetTaxiOrderState");
+        var cancelAPI = $resource("http://api.bishkektaxi.org/SetTaxiOrderState");
 
         return cancelResult = cancelAPI.get({
             method: "cancel_by_user",
@@ -38,8 +38,7 @@ taxi.service('offerService', function ($resource) {
         });
     };
     this.AssignToDriver = function (orderId, driverId) {
-        var assignAPI = $resource("http://bishkektaxi-api-prod.azurewebsites.net/SetTaxiOrderState", {
-        });
+        var assignAPI = $resource("http://api.bishkektaxi.org/SetTaxiOrderState");
 
         return assignResult = assignAPI.get({
             method: "assign_to_driver",
@@ -48,7 +47,7 @@ taxi.service('offerService', function ($resource) {
         });
     };
     this.GetTaxiOrderState = function (orderId) {
-        var getStateAPI = $resource("http://bishkektaxi-api-prod.azurewebsites.net/GetTaxiOrderState?");
+        var getStateAPI = $resource("http://api.bishkektaxi.org/GetTaxiOrderState?");
         return getStateResult = getStateAPI.get({
             order_id: orderId
         });

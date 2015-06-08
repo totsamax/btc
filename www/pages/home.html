@@ -1,5 +1,6 @@
-<ion-view view-title="Bishkek Taxi" ng-controller="Home">
-    <ion-content class="padding" overflow-scroll="true"  data-tap-disabled="true">
+<ion-view view-title="Заказ такси" ng-controller="Home">
+
+    <ion-content class="padding" overflow-scroll="true" data-tap-disabled="true">
 
         <div class="list">
             <form ng-show="!disForm">
@@ -11,16 +12,18 @@
                     <input type='text' placeholder="Куда" ng-model="to" />
                 </label>
 
-                <button type="submit" class="button button-full button-positive" ng-click="makeOrder(from, to)">Заказать такси</button>
+                <button type="submit" class="button button-full button-energized" ng-click="makeOrder(from, to)">Заказать такси</button>
             </form>
 
-            <button type="submit" ng-show="srch || ordersList" class="button button-full button-assertive" ng-click="cancelOrder()">Отменить заказ</button>
+            <button type="submit" ng-show="srch || ordersList" class="button button-full button-energized" ng-click="cancelOrder()">Отменить заказ</button>
 
         </div>
+        <div ng-show="srch" class="card item-icon-left">
 
+            <ion-spinner icon="ripple"></ion-spinner>Ведется поиск машин...
+        </div>
         <ion-list>
-            <p ng-show="srch" class="item-icon-left">
-            <ion-spinner icon="ripple"></ion-spinner>Ведется поиск машин...</p>
+
             <ion-item ng-repeat="offer in ordersList">
 
                 <div class="item item-avatar" ng-click="goToOffer(offer)">
@@ -41,7 +44,7 @@
 
             </ion-item>
         </ion-list>
-<!--
+        <!--
         <button class="button button-full button-positive"  ng-click="locate()">Найди меня!</button>
         <div style="position: relative; bottom: 0px; left: 0px; right: 0px;">
             <input ng-model="markers.now.lat" type="number">
