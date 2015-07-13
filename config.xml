@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.tabs410957" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Bishkek Taxi</name>
-  <description>
-        Bishkek Taxi
-    </description>
-  <author email="appexdev2014@gmail.com" href="http://bishkektaxi.org">
-        AppExDev Team
-    </author>
-  <content src="index.html"/>
-  <access origin="*"/>
+<name>Bishkek Taxi</name>
+<description>
+Bishkek Taxi
+</description>
+<author email="appexdev2014@gmail.com" href="http://bishkektaxi.org">
+AppExDev Team
+</author>
+<content src="index.html"/>
+<!-- Allow SMS links to open messaging app -->
+<allow-intent href="sms:*" />
+<!-- Allow tel: links to open the dialer -->
+<allow-intent href="tel:*" />
+<!-- Allow geo: links to open maps -->
+<allow-intent href="geo:*" />
+
+<access origin="*" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
