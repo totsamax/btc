@@ -15,6 +15,8 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
+  "com.ionic.keyboard",
+  "de.appplant.cordova.plugin.local-notification",
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-geolocation",
