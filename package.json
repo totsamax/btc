@@ -15,13 +15,15 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-  "com.ionic.keyboard",
-  "de.appplant.cordova.plugin.local-notification",
+    "com.ionic.keyboard",
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-geolocation",
-    "cordova-plugin-vibration",
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    {
+      "locator": "https://github.com/katzer/cordova-plugin-local-notifications",
+      "id": "de.appplant.cordova.plugin.local-notification"
+    }
   ],
   "cordovaPlatforms": [
     "android"

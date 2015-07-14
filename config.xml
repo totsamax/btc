@@ -8,13 +8,6 @@ Bishkek Taxi
 AppExDev Team
 </author>
 <content src="index.html"/>
-<!-- Allow SMS links to open messaging app -->
-<allow-intent href="sms:*" />
-<!-- Allow tel: links to open the dialer -->
-<allow-intent href="tel:*" />
-<!-- Allow geo: links to open maps -->
-<allow-intent href="geo:*" />
-
 <access origin="*" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
