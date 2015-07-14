@@ -1,0 +1,64 @@
+/* Empty. Add your own CSS if you like */
+
+.tab-nav .tabs {
+    position: absolute;
+    bottom: 0;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+@keyframes blinkk {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: blue;
+    }
+    100% {
+        background-color: white;
+    }
+}
+
+@-webkit-keyframes blinkk {
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: blue;
+    }
+    100% {
+        background-color: white;
+    }
+}
+
+.blinkk {
+    animation-name: blinkk;
+    animation-duration: 2s;
+    -webkit-animation-name: blinkk;
+    -webkit-animation-duration: 2s;
+}
+
+.angular-leaflet-map {
+    height: 100%;
+}
+
+.logo {
+    z-index: 100;
+    /*
+    background: url("../img/logo.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+*/
+}
+
+.dark {
+    background-color: #525252 !important;
+    color: #ffffff;
+}
+
+ion-content {
+    background: url("../img/pattern.gif");
+    background-repeat: repeat;
+}
