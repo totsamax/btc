@@ -1,0 +1,26 @@
+<ion-view view-title="Регистрация" hide-tabs ng-controller="Check">
+    <ion-content class="padding">
+        <div class="item">
+            <label class="item item-input">
+
+                <input type='tel' id='phone' required placeholder="Телефон" ng-model="tempPhone" />
+
+            </label>
+
+            <button class="button button-block button-energized" ng-show="!codeStatus" ng-click="sendSMS(tempPhone)">Отправить СМС</button>
+            <div class="card dark" ng-show="codeStatus">
+                <div class="item dark item-text-wrap">
+                    {{codeStatus}}
+                </div>
+            </div>
+            <label class="item item-input">
+
+                <input type="number" ng-model="userCode" placeholder="Введите, пожалуйста, код подтверждения из СМС" />
+            </label>
+            <button class="button button-block button-energized" ng-click="chekCode(userCode)">Проверить Код</button>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

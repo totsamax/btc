@@ -1,0 +1,26 @@
+<ion-view title="Детальная информация о водителе" hide-tabs>
+    <ion-content ng-controller="OfferDetails">
+        <div class="list card">
+            <div class="item item-avatar">
+                <img src="img/max.jpeg">
+                <h2>{{offer.DriverName}}</h2>
+                <p>{{offer.CarModel}}</p>
+            </div>
+
+            <span class="item item-icon-left">
+                <i class="icon icon ion-card"></i>Цена: {{offer.Price}}
+            </span>
+
+            <span class="item item-icon-left">
+                <i class="icon ion-clock"></i>Подача машины в: {{offer.FeedTime | date:"MM/dd/yyyy 'в' HH:mm"}}
+            </span>
+
+            <span class="item item-icon-left">
+                <i class="icon ion-star"></i>Рейтинг: {{offer.DriverRating}}
+            </span>
+
+        </div>
+        <button ng-click="openModal()" class="button button-full button-balanced">Подтвердить заказ</button>
+        <a href="#/" class="button button-full button-energized">Вернуться назад</a>
+    </ion-content>
+</ion-view>
