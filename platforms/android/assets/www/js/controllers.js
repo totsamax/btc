@@ -177,9 +177,9 @@ taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '
                     channel = pusher.subscribe('order_id' + orderId);
                 };
                 channel.bind('driver_has_arrived', function(data) {
-                    $cordovaLocalNotification.schedule({
+                    $cordovaLocalNotification.add({
                         id: "1234",
-                        text: "Ваша машина подана, выходите, пожалуйста",
+                        message: "Ваша машина подана, выходите, пожалуйста",
                         title: "Изменение статуса заказа",
                         sound: 'file://car.mp3'
                     }).then(function() {
@@ -189,9 +189,9 @@ taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '
                     $scope.status = "Ваша машина подана, выходите, пожалуйста";
                 });
                 channel.bind('order_is_completed', function(data) {
-                    $cordovaLocalNotification.schedule({
+                    $cordovaLocalNotification.add({
                         id: "12345",
-                        text: "Ваш заказ выполнен. Вы прибыли",
+                        message: "Ваш заказ выполнен. Вы прибыли",
                         title: "Изменение статуса заказа",
                         sound: 'file://car.mp3'
                     }).then(function() {
