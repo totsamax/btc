@@ -1,0 +1,63 @@
+<ion-view view-title="Заказ такси" ng-controller="Home">
+
+    <ion-content class="padding" overflow-scroll="true" data-tap-disabled="true">
+
+        <div class="list">
+            <form ng-show="!disForm">
+                <label class="item item-input">
+                    <input type='text' placeholder="Откуда" ng-model="from" />
+                </label>
+
+                <label class="item item-input">
+                    <input type='text' placeholder="Куда" ng-model="to" />
+                </label>
+
+                <button type="submit" class="button button-full button-energized" ng-click="makeOrder(from, to)">Заказать такси</button>
+            </form>
+
+            <button type="submit" ng-show="srch || ordersList" class="button button-full button-energized" ng-click="cancelOrder()">Отменить заказ</button>
+
+        </div>
+        <div ng-show="srch" class="card item-icon-left">
+
+            <ion-spinner icon="ripple"></ion-spinner>Ведется поиск машин...
+        </div>
+        <ion-list>
+
+            <ion-item ng-repeat="offer in ordersList">
+
+                <div class="item item-avatar" ng-click="goToOffer(offer)">
+                    <img src="img/car.png">
+                    <h2>{{offer.DriverName}}</h2>
+                </div>
+                <span class="item item-icon-left">
+                    <i class="icon icon ion-card"></i>Цена: {{offer.Price}}
+                </span>
+
+                <span class="item item-icon-left">
+                    <i class="icon ion-clock"></i>Подача машины в: {{offer.FeedTime| date:"MM/dd/yyyy 'в' HH:mm"}}
+                </span>
+
+                <span class="item item-icon-left">
+                    <i class="icon ion-star"></i>Рейтинг: {{offer.DriverRating}}
+                </span>
+
+            </ion-item>
+        </ion-list>
+        <!--
+        <button class="button button-full button-positive"  ng-click="locate()">Найди меня!</button>
+        <div style="position: relative; bottom: 0px; left: 0px; right: 0px;">
+            <input ng-model="markers.now.lat" type="number">
+            <input ng-model="markers.now.lng" type="number">
+            <leaflet center="osloCenter"
+                     markers="markers"
+                     width="100%"
+                     tiles="tiles"
+                     height="300px">
+            </leaflet>        
+        </div>
+-->
+
+    </ion-content>
+
+</ion-view>
