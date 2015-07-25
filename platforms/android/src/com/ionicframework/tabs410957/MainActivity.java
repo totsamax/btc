@@ -28,7 +28,10 @@ public class MainActivity extends CordovaActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         super.init();
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }

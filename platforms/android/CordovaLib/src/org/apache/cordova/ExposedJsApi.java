@@ -16,6 +16,7 @@
        specific language governing permissions and limitations
        under the License.
 */
+<<<<<<< HEAD
 package org.apache.cordova;
 
 import android.webkit.JavascriptInterface;
@@ -49,4 +50,18 @@ import org.json.JSONException;
     public String retrieveJsMessages(int bridgeSecret, boolean fromOnlineEvent) throws IllegalAccessException {
         return bridge.jsRetrieveJsMessages(bridgeSecret, fromOnlineEvent);
     }
+=======
+
+package org.apache.cordova;
+
+import org.json.JSONException;
+
+/*
+ * Any exposed Javascript API MUST implement these three things!
+ */
+public interface ExposedJsApi {
+    public String exec(int bridgeSecret, String service, String action, String callbackId, String arguments) throws JSONException, IllegalAccessException;
+    public void setNativeToJsBridgeMode(int bridgeSecret, int value) throws IllegalAccessException;
+    public String retrieveJsMessages(int bridgeSecret, boolean fromOnlineEvent) throws IllegalAccessException;
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 }

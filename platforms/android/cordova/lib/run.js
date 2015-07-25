@@ -19,6 +19,11 @@
        under the License.
 */
 
+<<<<<<< HEAD
+=======
+/* jshint loopfunc:true */
+
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 var path  = require('path'),
     build = require('./build'),
     emulator = require('./emulator'),
@@ -39,7 +44,11 @@ var path  = require('path'),
     var list = false;
 
     for (var i=2; i<args.length; i++) {
+<<<<<<< HEAD
         if (/^--(debug|release|ant|gradle|nobuild|versionCode=|minSdkVersion=|gradleArg=)/.exec(args[i])) {
+=======
+        if (build.isBuildFlag(args[i])) {
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
             buildFlags.push(args[i]);
         } else if (args[i] == '--device') {
             install_target = '--device';
@@ -122,7 +131,11 @@ var path  = require('path'),
                 return emulator.list_images()
                 .then(function(avds) {
                     // if target emulator isn't started, then start it.
+<<<<<<< HEAD
                     for (avd in avds) {
+=======
+                    for (var avd in avds) {
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
                         if (avds[avd].name == install_target) {
                             return emulator.start(install_target)
                             .then(function(emulatorId) {
@@ -142,7 +155,11 @@ var path  = require('path'),
             return device.install(resolvedTarget, buildResults);
         });
     });
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
 module.exports.help = function(args) {
     console.log('Usage: ' + path.relative(process.cwd(), args[1]) + ' [options]');
@@ -155,4 +172,8 @@ module.exports.help = function(args) {
     console.log('    --emulator : Will deploy the built project to an emulator if one exists');
     console.log('    --target=<target_id> : Installs to the target with the specified id.');
     process.exit(0);
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac

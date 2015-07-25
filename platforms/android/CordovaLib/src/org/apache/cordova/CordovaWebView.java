@@ -6,9 +6,13 @@
        to you under the Apache License, Version 2.0 (the
        "License"); you may not use this file except in compliance
        with the License.  You may obtain a copy of the License at
+<<<<<<< HEAD
 
          http://www.apache.org/licenses/LICENSE-2.0
 
+=======
+         http://www.apache.org/licenses/LICENSE-2.0
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
        Unless required by applicable law or agreed to in writing,
        software distributed under the License is distributed on an
        "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -16,6 +20,7 @@
        specific language governing permissions and limitations
        under the License.
 */
+<<<<<<< HEAD
 
 package org.apache.cordova;
 
@@ -499,6 +504,64 @@ public class CordovaWebView extends WebView {
     
     /**
      * Send JavaScript statement back to JavaScript.
+=======
+package org.apache.cordova;
+
+import java.util.List;
+import java.util.Map;
+
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.webkit.WebChromeClient.CustomViewCallback;
+
+/**
+ * Main interface for interacting with a Cordova webview - implemented by CordovaWebViewImpl.
+ * This is an interface so that it can be easily mocked in tests.
+ * Methods may be added to this interface without a major version bump, as plugins & embedders
+ * are not expected to implement it.
+ */
+public interface CordovaWebView {
+    public static final String CORDOVA_VERSION = "4.0.2";
+
+    void init(CordovaInterface cordova, List<PluginEntry> pluginEntries, CordovaPreferences preferences);
+
+    boolean isInitialized();
+
+    View getView();
+
+    void loadUrlIntoView(String url, boolean recreatePlugins);
+
+    void stopLoading();
+
+    boolean canGoBack();
+
+    void clearCache();
+
+    /** Use parameter-less overload */
+    @Deprecated
+    void clearCache(boolean b);
+
+    void clearHistory();
+
+    boolean backHistory();
+
+    void handlePause(boolean keepRunning);
+
+    void onNewIntent(Intent intent);
+
+    void handleResume(boolean keepRunning);
+
+    void handleStart();
+
+    void handleStop();
+
+    void handleDestroy();
+
+    /**
+     * Send JavaScript statement back to JavaScript.
+     *
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
      * Deprecated (https://issues.apache.org/jira/browse/CB-6851)
      * Instead of executing snippets of JS, you should use the exec bridge
      * to create a Java->JS communication channel.
@@ -518,6 +581,7 @@ public class CordovaWebView extends WebView {
      *    savedCallbackContext.sendPluginResult(dataResult);
      */
     @Deprecated
+<<<<<<< HEAD
     public void sendJavascript(String statement) {
         this.bridge.getMessageQueue().addJavaScript(statement);
     }
@@ -561,17 +625,25 @@ public class CordovaWebView extends WebView {
         return false;
     }
 
+=======
+    void sendJavascript(String statememt);
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
     /**
      * Load the specified URL in the Cordova webview or a new browser instance.
      *
+<<<<<<< HEAD
      * NOTE: If openExternal is false, only URLs listed in whitelist can be loaded.
+=======
+     * NOTE: If openExternal is false, only whitelisted URLs can be loaded.
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
      *
      * @param url           The url to load.
      * @param openExternal  Load url in browser instead of Cordova webview.
      * @param clearHistory  Clear the history stack, so new page becomes top of history
      * @param params        Parameters for new app
      */
+<<<<<<< HEAD
     public void showWebPage(String url, boolean openExternal, boolean clearHistory, HashMap<String, Object> params) {
         LOG.d(TAG, "showWebPage(%s, %b, %b, HashMap", url, openExternal, clearHistory);
 
@@ -968,4 +1040,44 @@ public class CordovaWebView extends WebView {
     public CordovaPreferences getPreferences() {
         return preferences;
     }
+=======
+    void showWebPage(String url, boolean openExternal, boolean clearHistory, Map<String, Object> params);
+
+    /**
+     * Deprecated in 4.0.0. Use your own View-toggling logic.
+     */
+    @Deprecated
+    boolean isCustomViewShowing();
+
+    /**
+     * Deprecated in 4.0.0. Use your own View-toggling logic.
+     */
+    @Deprecated
+    void showCustomView(View view, CustomViewCallback callback);
+
+    /**
+     * Deprecated in 4.0.0. Use your own View-toggling logic.
+     */
+    @Deprecated
+    void hideCustomView();
+
+    CordovaResourceApi getResourceApi();
+
+    void setButtonPlumbedToJs(int keyCode, boolean override);
+    boolean isButtonPlumbedToJs(int keyCode);
+
+    void sendPluginResult(PluginResult cr, String callbackId);
+
+    PluginManager getPluginManager();
+    CordovaWebViewEngine getEngine();
+    CordovaPreferences getPreferences();
+    ICordovaCookieManager getCookieManager();
+
+    String getUrl();
+
+    // TODO: Work on deleting these by removing refs from plugins.
+    Context getContext();
+    void loadUrl(String url);
+    Object postMessage(String id, Object data);
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 }

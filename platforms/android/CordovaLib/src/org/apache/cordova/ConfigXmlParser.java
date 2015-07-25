@@ -25,18 +25,26 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+<<<<<<< HEAD
 import org.apache.cordova.LOG;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.content.res.XmlResourceParser;
 import android.util.Log;
+=======
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import android.content.Context;
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
 public class ConfigXmlParser {
     private static String TAG = "ConfigXmlParser";
 
     private String launchUrl = "file:///android_asset/www/index.html";
     private CordovaPreferences prefs = new CordovaPreferences();
+<<<<<<< HEAD
     private Whitelist internalWhitelist = new Whitelist();
     private Whitelist externalWhitelist = new Whitelist();
     private ArrayList<PluginEntry> pluginEntries = new ArrayList<PluginEntry>(20);
@@ -49,6 +57,10 @@ public class ConfigXmlParser {
         return externalWhitelist;
     }
 
+=======
+    private ArrayList<PluginEntry> pluginEntries = new ArrayList<PluginEntry>(20);
+
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     public CordovaPreferences getPreferences() {
         return prefs;
     }
@@ -60,8 +72,13 @@ public class ConfigXmlParser {
     public String getLaunchUrl() {
         return launchUrl;
     }
+<<<<<<< HEAD
     
     public void parse(Activity action) {
+=======
+
+    public void parse(Context action) {
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
         // First checking the class namespace for config.xml
         int id = action.getResources().getIdentifier("config", "xml", action.getClass().getPackage().getName());
         if (id == 0) {
@@ -75,6 +92,7 @@ public class ConfigXmlParser {
         parse(action.getResources().getXml(id));
     }
 
+<<<<<<< HEAD
     public void parse(XmlResourceParser xml) {
         int eventType = -1;
         String service = "", pluginClass = "", paramType = "";
@@ -155,6 +173,22 @@ public class ConfigXmlParser {
                     onload = false;
                     urlMap = null;
                 }
+=======
+    boolean insideFeature = false;
+    String service = "", pluginClass = "", paramType = "";
+    boolean onload = false;
+
+    public void parse(XmlPullParser xml) {
+        int eventType = -1;
+
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (eventType == XmlPullParser.START_TAG) {
+                handleStartTag(xml);
+            }
+            else if (eventType == XmlPullParser.END_TAG)
+            {
+                handleEndTag(xml);
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
             }
             try {
                 eventType = xml.next();
@@ -166,6 +200,51 @@ public class ConfigXmlParser {
         }
     }
 
+<<<<<<< HEAD
+=======
+    public void handleStartTag(XmlPullParser xml) {
+        String strNode = xml.getName();
+        if (strNode.equals("feature")) {
+            //Check for supported feature sets  aka. plugins (Accelerometer, Geolocation, etc)
+            //Set the bit for reading params
+            insideFeature = true;
+            service = xml.getAttributeValue(null, "name");
+        }
+        else if (insideFeature && strNode.equals("param")) {
+            paramType = xml.getAttributeValue(null, "name");
+            if (paramType.equals("service")) // check if it is using the older service param
+                service = xml.getAttributeValue(null, "value");
+            else if (paramType.equals("package") || paramType.equals("android-package"))
+                pluginClass = xml.getAttributeValue(null,"value");
+            else if (paramType.equals("onload"))
+                onload = "true".equals(xml.getAttributeValue(null, "value"));
+        }
+        else if (strNode.equals("preference")) {
+            String name = xml.getAttributeValue(null, "name").toLowerCase(Locale.ENGLISH);
+            String value = xml.getAttributeValue(null, "value");
+            prefs.set(name, value);
+        }
+        else if (strNode.equals("content")) {
+            String src = xml.getAttributeValue(null, "src");
+            if (src != null) {
+                setStartUrl(src);
+            }
+        }
+    }
+
+    public void handleEndTag(XmlPullParser xml) {
+        String strNode = xml.getName();
+        if (strNode.equals("feature")) {
+            pluginEntries.add(new PluginEntry(service, pluginClass, onload));
+
+            service = "";
+            pluginClass = "";
+            insideFeature = false;
+            onload = false;
+        }
+    }
+
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     private void setStartUrl(String src) {
         Pattern schemeRegex = Pattern.compile("^[a-z-]+://");
         Matcher matcher = schemeRegex.matcher(src);

@@ -37,5 +37,9 @@ function readAppInfoFromManifest() {
 }
 
 exports.getActivityName = function() {
+<<<<<<< HEAD
     return cachedAppInfo = cachedAppInfo || readAppInfoFromManifest();
+=======
+    return (cachedAppInfo = cachedAppInfo || readAppInfoFromManifest());
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 };

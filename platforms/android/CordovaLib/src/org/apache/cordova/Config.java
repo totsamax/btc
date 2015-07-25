@@ -36,8 +36,13 @@ public class Config {
     public static void init(Activity action) {
         parser = new ConfigXmlParser();
         parser.parse(action);
+<<<<<<< HEAD
         parser.getPreferences().setPreferencesBundle(action.getIntent().getExtras());
         parser.getPreferences().copyIntoIntentExtras(action);
+=======
+        //TODO: Add feature to bring this back.  Some preferences should be overridden by intents, but not all
+        parser.getPreferences().setPreferencesBundle(action.getIntent().getExtras());
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     }
 
     // Intended to be used for testing only; creates an empty configuration.
@@ -46,6 +51,7 @@ public class Config {
             parser = new ConfigXmlParser();
         }
     }
+<<<<<<< HEAD
     
     /**
      * Add entry to approved list of URLs (whitelist)
@@ -88,6 +94,8 @@ public class Config {
         }
         return parser.getExternalWhitelist().isUrlWhiteListed(url);
     }
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
     public static String getStartUrl() {
         if (parser == null) {
@@ -100,6 +108,7 @@ public class Config {
         return parser.getPreferences().getString("errorurl", null);
     }
 
+<<<<<<< HEAD
     public static Whitelist getWhitelist() {
         return parser.getInternalWhitelist();
     }
@@ -108,6 +117,8 @@ public class Config {
         return parser.getExternalWhitelist();
     }
 
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     public static List<PluginEntry> getPluginEntries() {
         return parser.getPluginEntries();
     }

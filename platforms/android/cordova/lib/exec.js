@@ -37,5 +37,9 @@ module.exports = function(cmd, opt_cwd) {
         d.reject(e);
     }
     return d.promise;
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 

@@ -19,6 +19,11 @@
        under the License.
 */
 
+<<<<<<< HEAD
+=======
+/* jshint sub:true */
+
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 var shelljs = require('shelljs'),
     child_process = require('child_process'),
     Q     = require('q'),
@@ -31,6 +36,10 @@ var isWindows = process.platform == 'win32';
 
 function forgivingWhichSync(cmd) {
     try {
+<<<<<<< HEAD
+=======
+        // TODO: Should use shelljs.which() here to have one less dependency.
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
         return fs.realpathSync(which.sync(cmd));
     } catch (e) {
         return '';
@@ -63,7 +72,11 @@ module.exports.get_target = function() {
         return extractFromFile(path.join(ROOT, 'project.properties'));
     }
     throw new Error('Could not find android target. File missing: ' + path.join(ROOT, 'project.properties'));
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
 // Returns a promise. Called only by build and clean commands.
 module.exports.check_ant = function() {
@@ -140,7 +153,11 @@ module.exports.check_java = function() {
             return tryCommand('javac -version', msg);
         });
     });
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
 // Returns a promise.
 module.exports.check_android = function() {
@@ -237,6 +254,15 @@ module.exports.check_android_target = function(valid_target) {
 
 // Returns a promise.
 module.exports.run = function() {
+<<<<<<< HEAD
     return Q.all([this.check_java(), this.check_android()]);
 }
+=======
+    return Q.all([this.check_java(), this.check_android()])
+    .then(function() {
+        console.log('ANDROID_HOME=' + process.env['ANDROID_HOME']);
+        console.log('JAVA_HOME=' + process.env['JAVA_HOME']);
+    });
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 

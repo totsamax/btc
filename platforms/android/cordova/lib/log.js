@@ -19,8 +19,12 @@
        under the License.
 */
 
+<<<<<<< HEAD
 var shell = require('shelljs'),
     path  = require('path'),
+=======
+var path  = require('path'),
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     os  = require('os'),
     Q     = require('q'),
     child_process = require('child_process'),
@@ -31,7 +35,10 @@ var shell = require('shelljs'),
  * Returns a promise.
  */
 module.exports.run = function() {
+<<<<<<< HEAD
     var cmd = 'adb logcat | grep -v nativeGetEnabledTags';
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     var d = Q.defer();
     var adb = child_process.spawn('adb', ['logcat'], {cwd: os.tmpdir()});
 
@@ -49,10 +56,18 @@ module.exports.run = function() {
     });
 
     return d.promise;
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
 module.exports.help = function() {
     console.log('Usage: ' + path.relative(process.cwd(), path.join(ROOT, 'cordova', 'log')));
     console.log('Gives the logcat output on the command line.');
     process.exit(0);
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac

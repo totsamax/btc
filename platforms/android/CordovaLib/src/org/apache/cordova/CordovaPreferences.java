@@ -61,6 +61,7 @@ public class CordovaPreferences {
         String value = prefs.get(name);
         if (value != null) {
             return Boolean.parseBoolean(value);
+<<<<<<< HEAD
         } else if (preferencesBundleExtras != null) {
             Object bundleValue = preferencesBundleExtras.get(name);
             if (bundleValue instanceof String) {
@@ -68,16 +69,27 @@ public class CordovaPreferences {
             }
             // Gives a nice warning if type is wrong.
             return preferencesBundleExtras.getBoolean(name, defaultValue);
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
         }
         return defaultValue;
     }
 
+<<<<<<< HEAD
+=======
+    // Added in 4.0.0
+    public boolean contains(String name) {
+        return getString(name, null) != null;
+    }
+
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     public int getInteger(String name, int defaultValue) {
         name = name.toLowerCase(Locale.ENGLISH);
         String value = prefs.get(name);
         if (value != null) {
             // Use Integer.decode() can't handle it if the highest bit is set.
             return (int)(long)Long.decode(value);
+<<<<<<< HEAD
         } else if (preferencesBundleExtras != null) {
             Object bundleValue = preferencesBundleExtras.get(name);
             if (bundleValue instanceof String) {
@@ -85,6 +97,8 @@ public class CordovaPreferences {
             }
             // Gives a nice warning if type is wrong.
             return preferencesBundleExtras.getInt(name, defaultValue);
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
         }
         return defaultValue;
     }
@@ -94,6 +108,7 @@ public class CordovaPreferences {
         String value = prefs.get(name);
         if (value != null) {
             return Double.valueOf(value);
+<<<<<<< HEAD
         } else if (preferencesBundleExtras != null) {
             Object bundleValue = preferencesBundleExtras.get(name);
             if (bundleValue instanceof String) {
@@ -101,6 +116,8 @@ public class CordovaPreferences {
             }
             // Gives a nice warning if type is wrong.
             return preferencesBundleExtras.getDouble(name, defaultValue);
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
         }
         return defaultValue;
     }
@@ -110,15 +127,19 @@ public class CordovaPreferences {
         String value = prefs.get(name);
         if (value != null) {
             return value;
+<<<<<<< HEAD
         } else if (preferencesBundleExtras != null && !"errorurl".equals(name)) {
             Object bundleValue = preferencesBundleExtras.get(name);
             if (bundleValue != null) {
                 return bundleValue.toString();
             }
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
         }
         return defaultValue;
     }
 
+<<<<<<< HEAD
     // Plugins should not rely on values within the intent since this does not work
     // for apps with multiple webviews. Instead, they should retrieve prefs from the
     // Config object associated with their webview.
@@ -175,4 +196,6 @@ public class CordovaPreferences {
             preferencesBundleExtras = action.getIntent().getExtras();
         }
     }
+=======
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 }

@@ -19,21 +19,36 @@
        under the License.
 */
 
+<<<<<<< HEAD
 var shell = require('shelljs'),
     child_process = require('child_process'),
     Q     = require('q');
 
 get_highest_sdk = function(results){
+=======
+var child_process = require('child_process'),
+    Q     = require('q');
+
+var get_highest_sdk = function(results){
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     var reg = /\d+/;
     var apiLevels = [];
     for(var i=0;i<results.length;i++){
         apiLevels[i] = parseInt(results[i].match(reg)[0]);
     }
+<<<<<<< HEAD
     apiLevels.sort(function(a,b){return b-a});
     console.log(apiLevels[0]);
 }
 
 get_sdks = function() {
+=======
+    apiLevels.sort(function(a,b){return b-a;});
+    console.log(apiLevels[0]);
+};
+
+var get_sdks = function() {
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
     var d = Q.defer();
     child_process.exec('android list targets', function(err, stdout, stderr) {
         if (err) d.reject(stderr);
@@ -57,9 +72,17 @@ get_sdks = function() {
             return Q.reject(new Error('An error occurred while listing Android targets'));
         }
     });
+<<<<<<< HEAD
 }
 
 module.exports.run = function() {
     return Q.all([get_sdks()]);
 }
+=======
+};
+
+module.exports.run = function() {
+    return Q.all([get_sdks()]);
+};
+>>>>>>> b1abb3ced6a8e925c5006503956c86a182bca4ac
 
