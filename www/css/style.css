@@ -62,3 +62,12 @@ ion-content {
     background: url("../img/pattern.gif");
     background-repeat: repeat;
 }
+.angular-leaflet-map{
+    height: 100%;
+    position: absolute;
+    top:0;
+    z-index: -1;    
+}
+.nomargin{
+    margin: 0 !important;
+}

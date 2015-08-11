@@ -1,4 +1,4 @@
-taxi.controller('History', ['$scope', '$localStorage', '$pusher', 'offerService', '$http', '$state', '$ionicModal', function($scope, $localStorage, $pusher, offerService, $http, $state, $ionicModal) {
+taxi.controller('History', ['$scope', '$localStorage', 'offerService', '$state', function($scope, $localStorage, offerService, $state) {
     $scope.history = $localStorage.history;
     $scope.clearHistory = function() {
         $localStorage.history = [];
@@ -12,25 +12,22 @@ taxi.controller('History', ['$scope', '$localStorage', '$pusher', 'offerService'
         });
     };
 }]);
-taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '$http', '$ionicModal', '$ionicPopup', '$cordovaLocalNotification', '$cordovaVibration', '$cordovaGeolocation', '$ionicLoading',
-    function($scope, $localStorage, $pusher, offerService, $http, $ionicModal, $ionicPopup, $cordovaLocalNotification, $cordovaVibration, $cordovaGeolocation, $ionicLoading) {
+taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '$http', '$ionicModal', '$ionicPopup', '$cordovaLocalNotification', '$cordovaVibration', '$cordovaGeolocation', '$ionicLoading', 'leafletData',
+    function($scope, $localStorage, $pusher, offerService, $http, $ionicModal, $ionicPopup, $cordovaLocalNotification, $cordovaVibration, $cordovaGeolocation, $ionicLoading, leafletData) {
+        angular.extend($scope, {
+                Bishkek: {
+                    lat: 42.882004,
+                    lng: 74.582748,
+                    zoom: 10
+                }
+        });   
         $ionicModal.fromTemplateUrl('pages/order.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function(modal) {
             $scope.myModal = modal;
         });
-        $scope.$on('modal.hidden', function() {
-            // Execute action
-        });
-        // Execute action on remove modal
-        $scope.$on('modal.removed', function() {
-            // Execute action
-        });
-        //        $scope.continueOrder = function (orderId) {
-        //            $state.go('offerDetails', {continueOrderId: orderId});
-        //            offerService.orderId = orderId;
-        //        };    
+
         function countDown(second, endMinute, endHour, endDay, endMonth, endYear) {
             var now = new Date();
             second = second || now.getSeconds();
@@ -68,6 +65,32 @@ taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '
         $scope.stop= false;
         $scope.currentDriverName = "";
         $scope.currentDriverPhonenumber = "";
+
+         
+       leafletData.getMap().then(function(map) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+         $http.get('http://nominatim.openstreetmap.org/reverse',{params:{
+            format:'json',
+            lat:position.coords.latitude,
+            lon:position.coords.longitude,
+            zoom:'20',
+            addressdetails:'1'
+         }})
+         .success(function(data){
+            console.log(data);
+            $scope.from = data.display_name;
+
+            L.Routing.control({
+              waypoints: [
+                L.latLng(position.coords.latitude,position.coords.longitude),
+                L.latLng(57.6792, 11.949)
+              ],
+              show:false
+            }).addTo(map);
+            return data.address.town });
+     }); 
+        });
+
         if ($localStorage.lastOrderId && $localStorage.lastOrderId !== '' && $localStorage.lastOrderId !== undefined) {
             offerService.GetTaxiOrderState($localStorage.lastOrderId).$promise.then(function(resp) {
                 switch (resp.OrderState) {
@@ -162,12 +185,7 @@ taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '
                 }
             });
         };
-        $scope.autocompleteOptions = {
-            componentRestrictions: {
-                country: 'kg'
-            },
-            types: ['geocode']
-        };
+        
         $scope.openModal = function(offer, orderId) {
             $scope.status = "Машина выехала, ожидайте, пожалуйста";
             offerService.AssignToDriver(orderId, offer.DriverId).$promise.then(function(resp) {
@@ -313,8 +331,7 @@ taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '
                         console.log('Ошибка получения списка заказов' + data);
                     });
                 });
-            });
-        };
+            });};
         $scope.hide = function() {};
         $scope.cancelOrder = function() {
             offerService.CancelByUser($localStorage.lastOrderId);

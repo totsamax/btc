@@ -7,9 +7,12 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="css/leaflet.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="css/leaflet.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="lib/leaflet-routing-machine/dist/leaflet-routing-machine.css">
+
+
     <link href="css/autocomplete.css" rel="stylesheet">
 
 
@@ -21,7 +24,6 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
 
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <!--    <script src="js/jquery.min.js"></script>
             <script src="js/ngAutocomplete.js"></script>-->
     <script src="js/autocomplete.js" type="text/javascript"></script>
@@ -37,14 +39,17 @@
 
     <!-- ng-resource  -->
     <script src="js/angular-resource.min.js"></script>
-    <script src="lib/leaflet/leaflet.js"></script>
-    <script src="lib/leaflet/angular-leaflet-directive.min.js"></script>
-
+    <script src="lib/leaflet/dist/leaflet.js"></script>
+    <script src="lib/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+    <script src="lib/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+    
+    
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
@@ -79,7 +84,7 @@
 
     </ion-tabs>
 
-
+<style type="text/css"></style>
 </body>
 
 </html>
