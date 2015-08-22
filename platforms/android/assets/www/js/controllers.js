@@ -177,27 +177,29 @@ taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '
                     channel = pusher.subscribe('order_id' + orderId);
                 };
                 channel.bind('driver_has_arrived', function(data) {
-                    $cordovaLocalNotification.add({
-                        id: "1234",
-                        message: "Ваша машина подана, выходите, пожалуйста",
-                        title: "Изменение статуса заказа",
-                        sound: 'file://car.mp3'
-                    }).then(function() {
-                        console.log("The notification has been set");
-                        //$cordovaVibration.vibrate(1000);
-                    });
+                    // $cordovaLocalNotification.add({
+                    //     id: "1234",
+                    //     message: "Ваша машина подана, выходите, пожалуйста",
+                    //     title: "Изменение статуса заказа",
+                    //     sound: 'file://car.mp3'
+                    // }).then(function() {
+                    //     console.log("The notification has been set");
+                    //     //$cordovaVibration.vibrate(1000);
+                    // });
+                    $cordovaVibration.vibrate(1000);
                     $scope.status = "Ваша машина подана, выходите, пожалуйста";
                 });
                 channel.bind('order_is_completed', function(data) {
-                    $cordovaLocalNotification.add({
-                        id: "12345",
-                        message: "Ваш заказ выполнен. Вы прибыли",
-                        title: "Изменение статуса заказа",
-                        sound: 'file://car.mp3'
-                    }).then(function() {
-                        console.log("The notification has been set");
-                      //  $cordovaVibration.vibrate(1000);
-                    });
+                    // $cordovaLocalNotification.add({
+                    //     id: "12345",
+                    //     message: "Ваш заказ выполнен. Вы прибыли",
+                    //     title: "Изменение статуса заказа",
+                    //     sound: 'file://car.mp3'
+                    // }).then(function() {
+                    //     console.log("The notification has been set");
+                    //   //  
+                    // });
+                    $cordovaVibration.vibrate(1000);
                     $scope.status = "Ваш заказ выполнен. Вы прибыли";
                     var alertPopup = $ionicPopup.alert({
                         title: 'Ваш заказ завершен',
@@ -294,14 +296,14 @@ taxi.controller('Home', ['$scope', '$localStorage', '$pusher', 'offerService', '
                             order_id: $scope.orderResult.Id
                         }
                     }).success(function(data) {
-                        $cordovaLocalNotification.add({
-                            id: "342",
-                            message: "Список доступных машин изменился",
-                            title: "Изменение списка доступных машин",
-                            sound: 'file://car.mp3'
-                        }).then(function () {
+                        // $cordovaLocalNotification.add({
+                        //     id: "342",
+                        //     message: "Список доступных машин изменился",
+                        //     title: "Изменение списка доступных машин",
+                        //     sound: 'file://car.mp3'
+                        // }).then(function () {
                           
-                        });
+                        // });
                         $cordovaVibration.vibrate(1000);
                         console.log(data.CarModel);
                         $scope.ordersList = data;
